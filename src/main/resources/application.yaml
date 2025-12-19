@@ -2,21 +2,21 @@ spring:
   application:
     name: Manage Bookings
   r2dbc:
-    url: r2dbc:oracle://@ip:1521/DB
-    username: username
-    password: password
-#    pool:
-#      initial-size: 10
-#      max-size: 50
-#      max-acquire-time: 30s
-#      max-life-time: 30m
-#      validation-query: SELECT 1
-#      pool:
-#        initial-size: 10
-#        max-size: 50
-#        max-acquire-time: 30s
-#        max-life-time: 30m
-#        validation-query: SELECT 1
+    url: r2dbc:oracle://@10.149.20.35:1521/MYBUS
+    username: mybus_jpmrn_test
+    password: mybus_jpmrn_test
+    pool:
+      initial-size: 10
+      max-size: 50
+      max-acquire-time: 30s
+      max-life-time: 30m
+      validation-query: SELECT 1
+      pool:
+        initial-size: 10
+        max-size: 50
+        max-acquire-time: 30s
+        max-life-time: 30m
+        validation-query: SELECT 1
 
   server:
     port: 8080
