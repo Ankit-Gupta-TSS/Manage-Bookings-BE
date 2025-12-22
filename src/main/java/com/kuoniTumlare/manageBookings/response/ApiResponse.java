@@ -1,53 +1,45 @@
 package com.kuoniTumlare.manageBookings.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import java.time.LocalDateTime;
 
+@Getter
+@Builder
+@AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {
 
+    @Builder.Default
     private final LocalDateTime timestamp = LocalDateTime.now();
-    private int status;
-    private String message;
-    private T data;
 
-    public ApiResponse() {
-        this.status = 200;
-        this.message = "Request completed successfully";
+    private final int status;
+    private final String message;
+    private final T data;
+
+
+    public static <T> ApiResponse<T> success(T data) {
+        return ApiResponse.<T>builder()
+                .status(200)
+                .message("Request Successfully Completed")
+                .data(data)
+                .build();
     }
 
-    public ApiResponse(T data) {
-        this();
-        this.data = data;
+    public static <T> ApiResponse<T> success(String message, T data) {
+        return ApiResponse.<T>builder()
+                .status(200)
+                .message(message)
+                .data(data)
+                .build();
     }
 
-    public ApiResponse(int status, String message, T data) {
-        this.status = status;
-        this.message = message;
-        this.data = data;
+    public static <T> ApiResponse<T> error(int status, String message) {
+        return ApiResponse.<T>builder()
+                .status(status)
+                .message(message)
+                .build();
     }
-
-    public static <T> ApiResponse<T> builder() {
-        return new ApiResponse<>();
-    }
-
-    public ApiResponse<T> status(int status) {
-        this.status = status;
-        return this;
-    }
-
-    public ApiResponse<T> message(String message) {
-        this.message = message;
-        return this;
-    }
-
-    public ApiResponse<T> data(T data) {
-        this.data = data;
-        return this;
-    }
-
-    public LocalDateTime getTimestamp() { return timestamp; }
-    public int getStatus() { return status; }
-    public String getMessage() { return message; }
-    public T getData() { return data; }
 }
