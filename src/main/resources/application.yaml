@@ -2,7 +2,7 @@ spring:
   application:
     name: Manage Bookings
   r2dbc:
-    url: r2dbc:oracle://@10.149.20.35:1521/MYBUS
+    url: r2dbc:oracle://10.149.20.35:1521/MYBUS
     username: mybus_jpmrn_test
     password: mybus_jpmrn_test
     pool:
@@ -10,15 +10,32 @@ spring:
       max-size: 50
       max-acquire-time: 30s
       max-life-time: 30m
-      validation-query: SELECT 1
-      pool:
-        initial-size: 10
-        max-size: 50
-        max-acquire-time: 30s
-        max-life-time: 30m
-        validation-query: SELECT 1
+      validation-query: SELECT 1 FROM CITY_cacbda9caa8d
 
   server:
     port: 8080
+
+
+logging:
+  level:
+    # R2DBC SQL queries
+    org.springframework.r2dbc: DEBUG
+    org.springframework.data.r2dbc: DEBUG
+
+    # Oracle R2DBC driver
+    io.r2dbc.spi: DEBUG
+    io.r2dbc.pool: DEBUG
+    oracle.r2dbc: DEBUG
+    com.oracle.database.r2dbc: TRACE
+
+    # Spring Data repository operations
+    org.springframework.data.r2dbc.core: TRACE
+    org.springframework.data.r2dbc.query: TRACE
+
+    # Database client
+    org.springframework.r2dbc.core.DatabaseClient: DEBUG
+
+    # Connection factory
+    org.springframework.r2dbc.connection: DEBUG
 
 

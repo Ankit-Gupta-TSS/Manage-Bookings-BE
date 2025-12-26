@@ -3,18 +3,17 @@ package com.kuoniTumlare.manageBookings.entities;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Getter
 @Setter
-@Table("CITY_cacbda9caa8d")
-public class City {
+@Table("ITINERARY_OPTIONS_CACBDA9CAA8D")
+public class ItineraryOption {
 
     @Id
-    @Column("ID")
-    private String id;
+    private String optionId;
 
-    @Column("NAME")
-    private String name;
+    private String tourRequestNo;
+    private String abbreviation;
+    private String packageText;
 }
